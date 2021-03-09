@@ -6,25 +6,25 @@
       <div class="scanline"></div>
       
         <div v-if="banner" id="banner">
-          <p>
+          <div class="terminal_header">
             <img
               v-if="banner.img"
-              :align="banner.img.align ? banner.img.align : 'left'"
+              :align="banner.img.align"
               alt="Vue logo"
-              src="./../../../assets/terminal_logo_small2.png"
-              :width="banner.img.width ? banner.img.width : '151px'"
-              :height="banner.img.height ? banner.img.height : '120px'"
+              :src="banner.img.link"
+              :width="banner.img.width"
+              :height="banner.img.height"
             />
-          </p>
-          <glitch v-if="banner.header" style="letter-spacing: 4px; font-size: 60px;" :msg="banner.header"></glitch>
+          <glitch v-if="banner.header" style="letter-spacing: 4px; font-size: 50px;" :msg="banner.header"></glitch>
+          </div>
           <p></p>
-          <glitch v-if="banner.subHeader" :msg="banner.subHeader" style="font-size: 30px;"></glitch>
+          <glitch v-if="banner.subHeader" :msg="banner.subHeader" style="font-size: 25px;"></glitch>
           <p></p>
-          <glitch v-if="banner.helpHeader" :msg="banner.helpHeader" style="font-size: 30px;"></glitch>
+          <glitch v-if="banner.helpHeader" :msg="banner.helpHeader" style="font-size: 25px;"></glitch>
           <p></p>
         </div>
     <div style=" overflow: auto; width: 100%;">
-      <div style="height: 900px; width: 90%;">
+      <div style="height: 700px; width: 70%;">
         <output ref="output" class="output_class"></output>
         <div id="input-line" class="input-line" style="font-size: 20px;">
           <div class="prompt">
@@ -65,6 +65,7 @@ export default {
     shell_input: {
       required: false
     },
+
     banner: {
       type: Object,
       required: false,
@@ -81,7 +82,7 @@ export default {
           sign: 'VueShell $',
           img: {
             align: 'left',
-            link: `@/logo.png`,
+            link: `../../../assets/logo.png`,
             width: 100,
             height: 100
           }
@@ -123,7 +124,7 @@ export default {
   },
   methods: {
     sendData (arg1) {
-      axios.post('http://10.6.1.86:5000/api/terminal_handler', arg1)
+      axios.post('http://192.168.31.9:5000/api/terminal_handler', arg1)
         .then((response) => {
           console.log(response.data)
           this.output(response.data.status)
@@ -266,7 +267,7 @@ export default {
   text-align: left;
   text-shadow:0 0 24px #fff;
   font-family: 'VT323';
-  height: 200%;
+  height: 170%;
   opacity: 0.7;
   z-index: 2;
 }
@@ -287,7 +288,7 @@ export default {
 }
 @keyframes scanline {
     0% {
-        top: -100px;
+        top: -50px;
     }
     100% {
         top: 1300px;
@@ -368,5 +369,9 @@ img {
   column-width: 100px;
 
 }
-
+.terminal_header{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
 </style>

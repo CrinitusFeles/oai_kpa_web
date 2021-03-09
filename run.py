@@ -44,8 +44,8 @@ def get_view_model():
 @app.route('/<path:path>')
 def catch_all(path):
     if app.debug:
-        return requests.get('http://10.6.1.86:8080/{}'.format(path)).text
+        return requests.get('http://192.168.31.9:8080/{}'.format(path)).text
     return render_template("index.html")
 
 if __name__ == '__main__':
-    app.run(host='10.6.1.86')
+    app.run(host='192.168.31.9')

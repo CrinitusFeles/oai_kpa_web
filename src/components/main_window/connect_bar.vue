@@ -34,7 +34,7 @@ export default {
   methods: {
     connect () {
       this.isLoading = true
-      axios.post('http://10.6.1.86:5000/api/power')
+      axios.post('http://192.168.31.9:5000/api/power')
         .then((response) => {
           // console.log(response.data)
           this.isLoading = false

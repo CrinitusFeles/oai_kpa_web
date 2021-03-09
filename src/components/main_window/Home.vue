@@ -9,34 +9,26 @@
           <!-- <tabs class="tabs" ref="tabs_comp"> </tabs> -->
           
             <kpa-main-tab ref="bdk_tab" @component-destroy="destroy_handler"/>
-            <div class="terminal">
-                <shell 
-                  :banner="banner"
-                  :shell_input="send_to_terminal"
-                  :commands="commands"
-                  @shell_output="prompt"> 
-                </shell>
-            </div>
-            <div class="foreground">.</div>
+            <shell/>
           
         </div>
         <div class="div_top_header"> 
           <!-- <div class="image"></div> -->
           <div class="header_background"></div>
           <div class="header_content">
-              <div v-if="this.$vssWidth >= 800" class="logo" style="min-width: 200px;"> 
-                <img class="image" src="../../assets/header_logo-bg.png" :width="'200px'" :height="'80px'"/> 
+              <div v-if="this.$vssWidth >= 800" class="logo" style="width: 230px; max-height: 120px;display: flex;align-items: center;justify-content: center;"> 
+                <img class="image" src="../../assets/header_logo-bg.png" :width="'90%'" :height="'70%'"/> 
               </div>
               <div v-if="this.$vssWidth >= 1520" class="header_title"> Панель управления БДК2</div>
-              <div class="row" id="header_connect_box" style="margin-left: 100px; display: flex; flex-wrap: nowrap;">
-                <div class="connect_btn">
+              <div class="row" id="header_connect_box" style="margin-left: 15px; display: flex; flex-wrap: nowrap;vertical-align: baseline;">
+                <div class="connect_btn">  
                   <VueLoadingButton 
                   name="kek" 
                   class="load_btn" 
                   @click.native="connect" 
                   :loading="isLoading" 
                   :styled="false"
-                  style="margin-right: 20px;"> 
+                  style="margin-right: 15px; padding: 15px 15px; color: #222222;"> 
                   
                   Подключиться 
                   </VueLoadingButton>
@@ -48,7 +40,7 @@
                     :activeColor="'#0f0'"
                     :fontColor="'#d8d8d8'"
                     :borderColor="'none'"
-                    style="width: 360px; border-radius: 20px; background-color: #262833D1; margin-right: 80px;"
+                    style="width: 480px; border-radius: 20px; background-color: #262833D1; margin-right: 40px; font-size: 18px; font-family: glasten;"
                   />
               </div>
             </div>
@@ -67,7 +59,7 @@ import VueLoadingButton from 'vue-loading-button'
 import kpaMainTab from './tabs/kpa_main_tab'
 import VueFaqAccordion from 'vue-faq-accordion'
 import VueScreenSize from 'vue-screen-size'
-import shell from './tabs/terminal'
+import shell from './tabs/terminal_kpa'
 export default {
   data () {
     return {
@@ -98,7 +90,7 @@ export default {
   components: { shell, VueFaqAccordion, kpaMainTab, tabs, ConnectBar, VueLoadingButton },
   methods: {
     update_data () {
-      axios.get('http://10.6.1.86:5000/api/view_model')
+      axios.get('http://192.168.31.9:5000/api/view_model')
         .then(x => {
           // this.$refs.tabs_comp.update_tabs(x.data)
           this.$refs.bdk_tab.bdk2_tab_update_data(x.data)
@@ -154,7 +146,7 @@ export default {
     },
     connect () {
       this.isLoading = true
-      axios.post('http://10.6.1.86:5000/api/power')
+      axios.post('http://192.168.31.9:5000/api/power')
         .then((response) => {
           // console.log(response.data)
           this.isLoading = false
@@ -196,7 +188,10 @@ export default {
 </script>
 
 <style>
-
+@font-face {
+    font-family: "glasten";
+    src: url("../../assets/Stamper-RG/7fonts.ru_Stamper_RG.ttf");
+}
 .load_btn{
   /* position: fixed; */
   /* top: 140; */
@@ -204,6 +199,11 @@ export default {
   padding: 7px 20px;
   background-color: rgba(218, 149, 0, 0.822);
 }
+.load_btn:disabled {
+  pointer-events: stroke;
+  cursor: not-allowed;
+}
+
 body {
   background-color: #121212;
   /* min-width:1250px;        */
@@ -258,9 +258,9 @@ width: 100%;
 .image {  grid-area: 1 / 1 / 2 / 2; margin-top: 5px; margin-left: 60px;}
 .header_title { 
   grid-area: 1 / 1 / 2 / 2;
-  color: #003153; 
-  font-family: Arial;
-  font-weight: bold;
+  color: #84c9fbd5; 
+  font-family: glasten;
+  /* font-weight: bold; */
   z-index: 10; 
   display: flex;
   align-items: center; /* Vertical center alignment */
@@ -276,31 +276,11 @@ width: 100%;
   flex-direction: row;
   width: 100%;
 }
-.connect_btn {  display: flex;
+.connect_btn {  
+    font-family: glasten;
+  display: flex;
   align-items: center; /* Vertical center alignment */
   justify-content: center; /* Horizontal center alignment */ }
 .devices_list { grid-area: 1 / 4 / 2 / 5; max-height: 40px;}
-.header_background { grid-area: 1 / 1 / 2 / 5; background-color: orange; height: 100px; width: 100%;}
-
-
-
-
-.foreground{
-  top: 50px;
-  height: 1300px;
-  z-index: -1;
-  background-image: url("../../assets/img-noise-1200x900.png");
-  top: 40px;
-  position: relative;
-  top: -1250px;
-  width: 100%;
-  border-radius: 30px;
-  
-}
-.terminal{
-  height: 1300px;
-  min-width: 560px;
-  width: 100%;
-  padding: 100px 60px;
-}
+.header_background { grid-area: 1 / 1 / 2 / 5; background-color: #0030538e; height: 120px; width: 100%;}
 </style>
