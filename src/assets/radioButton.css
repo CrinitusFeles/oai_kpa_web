@@ -1,0 +1,129 @@
+
+
+.form_radio_btn {
+	display: inline-block;
+	margin-right: 10px;
+    width: 100%;
+	min-width: 120px;
+}
+/* .form_radio_btn label:hover {
+	box-shadow: 0 3px 4px 0 rgba(0,0,0,0.14), 0 10px 20px 0 rgba(0,0,0,0.10);
+} */
+.form_radio_btn input[type=radio] {
+	display: none;
+}
+.form_radio_btn label {
+	display: inline-block;
+	cursor: pointer;
+	padding: 0px 15px;
+	line-height: 40px;
+	/* border: 1px solid #999; */
+	border-radius: 4px;
+	user-select: none;
+    width: 100%;
+	min-width: 120px;
+	background: #96a8f71f;
+	color: #96a8f7;
+}
+
+/* Checked */
+.form_radio_btn input[type=radio]:checked + label {
+	background: #2fb89d;
+	color: #121212;
+}
+ 
+/* Hover */
+/* .form_radio_btn label:hover { */
+	/* color: rgb(170, 43, 43);
+    background-color: rgb(156, 156, 156); */
+/* } */
+ 
+
+.btn_material {
+	/* по-умолчанию для <button>, но пригодится для <a> */
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+	width: 100%;
+  
+	/* создаём маленькие отступы, если кнопки перенесутся на две строки */
+	/* margin: 2px 0; */
+  
+	/* невидимая граница (понадобится для цвета при наведении/фокусе) */
+	/* border: 1px solid #999; */
+	
+	/* border-radius: 4px; */
+  
+	/* размер строится из текста и отступов (без width/height) */
+	line-height: 40px;
+	border-radius: 4px;
+	/* убедитесь, что достаточно контраста! */
+	background: #2fb89d;
+	color: #121212;
+  }
+  
+  /* олдскульный эффект «нажатия» + цветовые правки */
+  .btn_material:active {
+	transform: translateY(1px);
+	filter: saturate(150%);
+  }
+  
+  /* инвертируем цвета при наведении и фокусе */
+  .btn_material:hover,
+  .btn_material:focus {
+	color: #121212;
+	text-decoration: none;
+	cursor: pointer;
+	/* border-color: currentColor; */
+	/* background-color: #1EB980; */
+  }
+
+
+
+
+.checkbox-btn {
+	display: inline-block;
+	/* margin: 0 5px 0 0; */
+	user-select: none;
+	position: relative;
+	width: 100%;
+	min-width: 120px;
+}
+.checkbox-btn input[type=checkbox] {
+	/* z-index: -1; */
+	opacity: 0;
+	display: block;
+	width: 100%;
+	min-width: 120px;
+	height: 0;
+}
+.checkbox-btn span {
+	display: inline-block;
+	cursor: pointer;
+	padding: 0px 10px;
+	line-height: 40px;
+	/* border: 1px solid #999; */
+	border-radius: 4px;
+	transition: background 0.2s ease;
+	width: 100%;
+	background: #96a8f71f;
+	color: #96a8f7;
+}
+ 
+/* Checked */
+.checkbox-btn input[type=checkbox]:checked + span {
+	background: #2fb89d;
+	color: #121212;
+	
+}
+ 
+/* Focus */
+/* .focused span {
+	box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+
+} */
+ 
+/* Hover */
+.checkbox-btn:hover {
+	color: #666;
+}
