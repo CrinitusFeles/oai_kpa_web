@@ -2,7 +2,7 @@
     "force_component_update": false,
     "connection_progress": true,
     "stm": {
-        "connection_status": false,
+        "connection_status": true,
         "errors": [],
         "table1": {
             "links": {
@@ -228,7 +228,7 @@
     },
     "power": {
         "be": {
-            "connection_status": false,
+            "connection_status": true,
             "errors": [],
             "on_state": true,
             "voltage": 26.95,

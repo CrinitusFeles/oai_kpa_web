@@ -135,7 +135,7 @@ padding: 10px 15px;
 .div1 { 
   grid-area: 1 / 1 / 2 / 5; 
   background: rgba(0, 87, 218, 0.377);
-  color: #d8d8d8;;
+  color: #d8d8d8;
   border-radius: 7px;
   font-weight: bold;
   color: #84C9FB;

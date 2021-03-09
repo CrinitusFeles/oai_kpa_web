@@ -13,7 +13,7 @@
           </div>
           <div class="col">
             <!-- <tests-widget/> -->
-            <div class="parent">
+            <div class="chart_widget_panel">
               <div class="chart_widget">
               <chart ref="plotly_chart" align="center"/>
               </div>
@@ -28,6 +28,7 @@
               </div>
             </div>
           </div>
+
       </div>
   </div>
 </template>
@@ -92,7 +93,7 @@ export default {
 </script>
 
 <style scoped>
-.parent {
+.chart_widget_panel {
 display: grid;
 grid-template-columns: repeat(3, 1fr);
 grid-template-rows: repeat(5, 1fr) 0.6fr;

@@ -41,7 +41,7 @@
             @keydown.down="history_down()"
             @keydown.tab="cmd_tab($event)"
             class="cmdline"
-            autofocus
+            
             style="font-size: 30px;"
           />
         </div>
@@ -281,13 +281,13 @@ export default {
         rgba(0, 0, 0, 0.1) 100%
     );
     opacity: 0.2;
-    position: absolute;
+    position: relative;
     bottom: 100%;
     animation: scanline 4s linear infinite;
 }
 @keyframes scanline {
     0% {
-        top: 40px;
+        top: -100px;
     }
     100% {
         top: 1300px;

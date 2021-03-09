@@ -5,20 +5,20 @@
             <tab title="БДК2" >
                 <kpa-main-tab ref="bdk_tab" @component-destroy="destroy_handler"/>
             </tab>
-            <tab id="stm_tab_id" :title=stm_status>
+            <tab id="stm_tab_id" :title=stm_status :disabled="true">
                 This is React1
                 <!-- <my-layout-composer></my-layout-composer> -->
             </tab>
-            <tab id="be_tab_id" :title=be_status>
+            <tab id="be_tab_id" :title=be_status :disabled="true">
                 <power-main-widget/>
             </tab>
-            <tab id="bdd_tab_id" :title=bdd_status>
+            <tab id="bdd_tab_id" :title=bdd_status :disabled="true">
                 <power-main-widget/>
             </tab>
-            <tab id="mku_tab_id" :title=mku_status>
+            <tab id="mku_tab_id" :title=mku_status :disabled="true">
                 <mku-main-widget/>
             </tab>
-            <tab id="dep_tab_id" :title=dep_status>
+            <tab id="dep_tab_id" :title=dep_status :disabled="true">
                 <dep-main-widget/>
             </tab>
             <tab id="interface_tab_id" :title=interface_status>
