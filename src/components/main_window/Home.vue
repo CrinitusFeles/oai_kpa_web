@@ -90,7 +90,7 @@ export default {
   components: { shell, VueFaqAccordion, kpaMainTab, tabs, ConnectBar, VueLoadingButton },
   methods: {
     update_data () {
-      axios.get('http://192.168.31.9:5000/api/view_model')
+      axios.get('http://10.6.1.86:5000/api/view_model')
         .then(x => {
           // this.$refs.tabs_comp.update_tabs(x.data)
           this.$refs.bdk_tab.bdk2_tab_update_data(x.data)
@@ -146,7 +146,7 @@ export default {
     },
     connect () {
       this.isLoading = true
-      axios.post('http://192.168.31.9:5000/api/power')
+      axios.post('http://10.6.1.86:5000/api/power')
         .then((response) => {
           // console.log(response.data)
           this.isLoading = false

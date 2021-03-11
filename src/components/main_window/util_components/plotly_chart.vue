@@ -64,12 +64,12 @@ export default {
         },
         yaxis: {
           title: 'Напряжение, В',
-          range: [-2, 2],
+          range: [23, 29],
           titlefont: {color: 'orange'},
           tickfont: {color: 'orange'}
         },
         yaxis2: {
-          range: [-2, 2],
+          range: [0, 10],
           title: 'Ток, мА',
           titlefont: {color: 'orange'},
           tickfont: {color: 'orange'},
@@ -89,13 +89,13 @@ export default {
     update_chart () {
       var data = new Date()
       this.val += 0.1
-      this.data[0].y.push(Math.sin(this.val * 2 * Math.PI))
+      this.data[0].y.push(parseFloat(document.getElementById('be_voltage_val').textContent))
       this.data[0].x.push(data.toLocaleString('ru', { hour: '2-digit', minute: '2-digit', second: '2-digit' }))
-      this.data[1].y.push(Math.random() + 10)
+      this.data[1].y.push(parseFloat(document.getElementById('be_current_val').textContent))
       this.data[1].x.push(data.toLocaleString('ru', { hour: '2-digit', minute: '2-digit', second: '2-digit' }))
-      this.data[2].y.push(Math.cos(this.val * 2 * Math.PI))
+      this.data[2].y.push(parseFloat(document.getElementById('power_bdd_voltage_val').textContent))
       this.data[2].x.push(data.toLocaleString('ru', { hour: '2-digit', minute: '2-digit', second: '2-digit' }))
-      this.data[3].y.push(Math.random() + 10)
+      this.data[3].y.push(parseFloat(document.getElementById('power_bdd_current_val').textContent))
       this.data[3].x.push(data.toLocaleString('ru', { hour: '2-digit', minute: '2-digit', second: '2-digit' }))
 
       this.points_count += 1
@@ -129,6 +129,7 @@ export default {
     },
     stop_update () {
       clearInterval(this.interval)
+      this.interval = undefined
       console.log('stop')
     },
     start_update () {

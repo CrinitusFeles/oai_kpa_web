@@ -124,7 +124,7 @@ export const store = new Vuex.Store({
 
   actions: {
     INIT_STATE: async (context, payload) => {
-      await Axios.get('http://192.168.31.9:5000/api/view_model').then(x => {
+      await Axios.get('http://10.6.1.86:5000/api/view_model').then(x => {
         context.commit('SET_MKU_PK1', x.data.mku.be.pk1_state)
         context.commit('SET_MKU_PK2', x.data.mku.be.pk2_state)
         context.commit('SET_MKU_OFF', x.data.mku.be.off_state)

@@ -124,7 +124,7 @@ export default {
   },
   methods: {
     sendData (arg1) {
-      axios.post('http://192.168.31.9:5000/api/terminal_handler', arg1)
+      axios.post('http://10.6.1.86:5000/api/terminal_handler', arg1)
         .then((response) => {
           console.log(response.data)
           this.output(response.data.status)

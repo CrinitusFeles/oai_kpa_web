@@ -21,7 +21,7 @@
                 {
                     "id": 0,
                     "label": "КПБЭ",
-                    "value": 5.5,
+                    "value": 3.3,
                     "state": 0
                 },
                 {
@@ -56,13 +56,13 @@
                     "id": 0,
                     "label": "КПДД",
                     "value": 3.3,
-                    "state": 2
+                    "state": 0
                 },
                 {
                     "id": 1,
                     "label": "МСоб.",
                     "value": 3.3,
-                    "state": 2
+                    "state": 0
                 },
                 {
                     "id": 2,
@@ -207,8 +207,8 @@
                 {
                     "id": 0,
                     "label": "К.С.",
-                    "value": 3.5,
-                    "state": 1
+                    "value": 4095,
+                    "state": 0
                 }
             ]
         }
@@ -231,19 +231,19 @@
             "connection_status": true,
             "errors": [],
             "on_state": true,
-            "voltage": 26.95,
+            "voltage": 24.94,
             "current": 6,
-            "power": 161.7,
-            "aim_voltage": 27
+            "power": 149.65,
+            "aim_voltage": 25000
         },
         "bdd": {
-            "connection_status": false,
+            "connection_status": true,
             "errors": [],
             "on_state": true,
-            "voltage": 27.03,
-            "current": 6,
-            "power": 162.15,
-            "aim_voltage": 27
+            "voltage": 25.02,
+            "current": 6.0,
+            "power": 150.12,
+            "aim_voltage": 25000
         }
     },
     "dep": {

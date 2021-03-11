@@ -48,12 +48,14 @@ import axios from 'axios'
 export default {
   data: function () {
     return {
-      value: 0
+      value: 0,
+      interval: undefined,
+      state: 0
     }
   },
   methods: {
     sendData (arg1) {
-      axios.post('http://192.168.31.9:5000/api/button_handler', arg1)
+      axios.post('http://10.6.1.86:5000/api/button_handler', arg1)
         .then((response) => {
           console.log(response.data)
         })
@@ -74,9 +76,12 @@ export default {
       } else if (event.target.id === 'dep_loop_start') {
         console.log('dep_loop_start ' + event.target.checked)
         this.sendData({button: event.target.id, state: event.target.checked})
+        this.interval = setInterval(this.loop_voltage, this.value * 1000)
       } else if (event.target.id === 'dep_loop_stop') {
         console.log('dep_loop_stop ' + event.target.checked)
         this.sendData({button: event.target.id, state: event.target.checked})
+        clearInterval(this.interval)
+        this.interval = undefined
       } else if (event.target.id === 'aim_voltage_btn') {
         console.log(this.value)
         this.sendData({button: event.target.id, state: this.value})
@@ -87,6 +92,21 @@ export default {
         console.log('dep_loop_stop ' + event.target.checked)
         this.sendData({button: event.target.id, state: event.target.checked})
       }
+    },
+    loop_voltage () {
+      if (this.state === 0) {
+        this.sendData({button: 'dep_pos_voltage', state: 'True'})
+        this.state = 1
+        document.getElementById('dep_pos_voltage').checked = true
+      } else if (this.state === 1) {
+        this.sendData({button: 'dep_zero_voltage', state: 'True'})
+        this.state = 2
+        document.getElementById('dep_zero_voltage').checked = true
+      } else if (this.state === 2) {
+        this.sendData({button: 'dep_neg_voltage', state: 'True'})
+        this.state = 0
+        document.getElementById('dep_neg_voltage').checked = true
+      }
     }
   },
   components: {
@@ -95,10 +115,13 @@ export default {
   mounted () {
     if (this.$store.getters.GET_DEP_VOLTAGE === 30) {
       document.getElementById('dep_pos_voltage').checked = true
+      this.state = 0
     } else if (this.$store.getters.GET_DEP_VOLTAGE === 0) {
       document.getElementById('dep_zero_voltage').checked = true
+      this.state = 1
     } else if (this.$store.getters.GET_DEP_VOLTAGE === -30) {
       document.getElementById('dep_neg_voltage').checked = true
+      this.state = 2
     } else {
       alert('Warning! dep module recieve incorrect voltage != [0, 30, -30]')
     }

@@ -38,11 +38,11 @@ export default {
     checkState (value) {
       if (this.myapiData) {
         if (this.myapiData.data[value].state === 0) {
-          return '<div style="background-color: ' + this.stateColor1 + '; border-radius: 10px; padding: 5px 5px; font-weight: bold;">' + this.myapiData.data[value].value + 'В'
+          return '<div style="background-color: ' + this.stateColor1 + '; border-radius: 10px; padding: 5px 5px; font-weight: bold;">' + this.myapiData.data[value].value
         } else if (this.apiData.data[value].state === 1) {
-          return '<div style="background-color: ' + this.stateColor2 + '; border-radius: 10px; padding: 5px 5px; font-weight: bold;">' + this.myapiData.data[value].value + 'В'
+          return '<div style="background-color: ' + this.stateColor2 + '; border-radius: 10px; padding: 5px 5px; font-weight: bold;">' + this.myapiData.data[value].value
         } else if (this.apiData.data[value].state === 2) {
-          return '<div style="background-color: ' + this.stateColor3 + '; border-radius: 10px; padding: 5px 5px; font-weight: bold;">' + this.myapiData.data[value].value + 'В'
+          return '<div style="background-color: ' + this.stateColor3 + '; border-radius: 10px; padding: 5px 5px; font-weight: bold;">' + this.myapiData.data[value].value
         }
       }
     },

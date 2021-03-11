@@ -20,7 +20,7 @@
         <div class="div8"> Мощность, мВт: </div>
         <div class="div9" id="be_power_val"> {{ power }} </div>
         <div class="div10"> <a class="btn_material" id="be_aim_voltage_btn" v-on:click="button_click_handler($event)"> Целевое напряжение, В </a> </div>
-        <div class="div11"> <vue-number-input center controls v-model="value" style="color: black;"></vue-number-input>
+        <div class="div11"> <vue-number-input id="be_number_input" center controls v-model="value" style="color: black;"></vue-number-input>
         </div> 
     </div>
 </template>
@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     sendData (arg1) {
-      axios.post('http://192.168.31.9:5000/api/button_handler', arg1)
+      axios.post('http://10.6.1.86:5000/api/button_handler', arg1)
         .then((response) => {
           console.log(response.data)
         })
@@ -59,7 +59,7 @@ export default {
         this.current = data.current
         this.power = data.power
         if (this.msg === 'БЭ') {
-          if (this.voltage >= data.aim_voltage + 0.5 || this.voltage <= data.aim_voltage - 0.5) {
+          if (this.voltage * 1000 >= data.aim_voltage + 500 || this.voltage * 1000 <= data.aim_voltage - 500) {
             document.getElementById('be_voltage_val').style.color = 'tomato'
           } else {
             document.getElementById('be_voltage_val').style.color = '#84C9FB'
@@ -70,7 +70,7 @@ export default {
             document.getElementById('be_current_val').style.color = '#84C9FB'
           }
         } else {
-          if (this.voltage >= data.aim_voltage + 0.5 || this.voltage <= data.aim_voltage - 0.5) {
+          if (this.voltage * 1000 >= data.aim_voltage + 500 || this.voltage * 1000 <= data.aim_voltage - 500) {
             document.getElementById('power_bdd_voltage_val').style.color = 'tomato'
           } else {
             document.getElementById('power_bdd_voltage_val').style.color = '#84C9FB'
@@ -108,7 +108,7 @@ export default {
   mounted () {
     // this.update_data()
     if (this.msg === 'БЭ') {
-      this.value = this.$store.getters.GET_POWER_BDD_AIM_VOLTAGE
+      this.value = this.$store.getters.GET_POWER_BE_AIM_VOLTAGE / 1000
       document.getElementById('be_power_off').setAttribute('name', 'bdd')
       document.getElementById('be_power_on').setAttribute('name', 'bdd')
       document.getElementById('be_power_off').setAttribute('id', 'power_bdd_off_id')
@@ -119,13 +119,14 @@ export default {
       document.getElementById('be_voltage_val').setAttribute('id', 'power_bdd_voltage_val')
       document.getElementById('be_current_val').setAttribute('id', 'power_bdd_current_val')
       document.getElementById('be_power_val').setAttribute('id', 'power_bdd_power_val')
+      document.getElementById('be_number_input').setAttribute('id', 'power_bdd_number_input')
 
       document.getElementById('power_bdd_off_id').checked = !this.$store.getters.GET_POWER_BDD_ON
       document.getElementById('power_bdd_on_id').checked = this.$store.getters.GET_POWER_BDD_ON
       document.getElementById('be_power_off').checked = !this.$store.getters.GET_POWER_BE_ON
       document.getElementById('be_power_on').checked = this.$store.getters.GET_POWER_BE_ON
     } else {
-      this.value = this.$store.getters.GET_POWER_BE_AIM_VOLTAGE
+      this.value = this.$store.getters.GET_POWER_BDD_AIM_VOLTAGE / 1000
     }
   }
 }
